@@ -214,8 +214,12 @@ const MakeFollowUnfollowPlaylist = async(playListId, buttonType) => {
             });
             // console.log('status code',playlistResponsefollow.status);
             if(playlistResponsefollow.status == 200){
-                btn_follow.innerText = 'Unfollow';
+                // btn_follow.innerText = 'Unfollow';
+                window.alert('Successfully unfollowed the playlist');
                 getPlaylistOfUser();
+            }
+            else{
+                window.alert('Please try Again '+playlistResponsefollow.status);
             }
         }
         else if(buttonType === 'Unfollow') {
@@ -229,8 +233,12 @@ const MakeFollowUnfollowPlaylist = async(playListId, buttonType) => {
             });
             // console.log('status code',playlistResponseunfollow.status);
             if(playlistResponseunfollow.status == 200){
-                btn_follow.innerText = 'Follow';
+                // btn_follow.innerText = 'Follow';
+                window.alert('Successfully followed the playlist');
                 getPlaylistOfUser();
+            }
+            else{
+                window.alert('Please try Again '+playlistResponseunfollow.status);
             }
         }
         
