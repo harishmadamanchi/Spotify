@@ -39,8 +39,8 @@ const handleRedirect = () => {
 const getAccessToken = async(code) => {
     try {
         const ACCESS_TOKEN_URI = `https://accounts.spotify.com/api/token`;
-        const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=http://127.0.0.1:5500/index.html"; 
-        // const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=https://harishmadamanchi.github.io/Spotify/index.html"
+        // const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=http://127.0.0.1:5500/index.html"; 
+        const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=https://harishmadamanchi.github.io/Spotify/index.html"
         // console.log('body',body_request);
         const response = await fetch(ACCESS_TOKEN_URI,{
             method: "POST",
@@ -352,8 +352,8 @@ const getAccessTokenwithRefreshToken = async(refresh) => {
 const authorizeUser = async() => {
     try {
         // const scopes = "playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative ugc-image-upload";
-        // const redirect = "https://harishmadamanchi.github.io/Spotify/index.html";
-        const redirect = "http://127.0.0.1:5500/index.html";
+        const redirect = "https://harishmadamanchi.github.io/Spotify/index.html";
+        // const redirect = "http://127.0.0.1:5500/index.html";
         const scopes ="streaming playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-follow-modify user-library-read user-library-modify user-modify-playback-state user-read-recently-played user-read-playback-state user-read-currently-playing user-top-read";
         const AUTHORIZEURI = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirect}&scope=${scopes}`;
         window.location.href = AUTHORIZEURI;    
