@@ -123,7 +123,7 @@ const loadUserPlaylist = (playlistJson) => {
         const buttonName = jsonFollow[0] ? 'Unfollow' : 'Follow';
         const Playlistdescription = element.description.length > 0 ? (element.description).substring(0,56) : '</br></br>';
         const eachPlaylistItem = `
-        <div class="card mt-2 mt-md-0">
+        <div class="card mt-2">
             <img src="${element.images[0].url}" class="card-img-top" alt="...">
             <div class="card-body">
               <h6 class="card-title font-weight-bold">${element.name}</h6>
