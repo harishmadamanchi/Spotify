@@ -39,8 +39,8 @@ const handleRedirect = () => {
 const getAccessToken = async(code) => {
     try {
         const ACCESS_TOKEN_URI = `https://accounts.spotify.com/api/token`;
-        // const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=http://127.0.0.1:5500/index.html"; 
-        const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=https://harishmadamanchi.github.io/Spotify/index.html"
+        const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=http://127.0.0.1:5500/index.html"; 
+        // const body_request = "grant_type=authorization_code&code="+code+"&redirect_uri=https://harishmadamanchi.github.io/Spotify/index.html"
         // console.log('body',body_request);
         const response = await fetch(ACCESS_TOKEN_URI,{
             method: "POST",
@@ -281,7 +281,7 @@ const loadTracks = (playListTracks,idPlayList) => {
     let i = 1;
     console.log(playListTracks);
     playListTracks.forEach(element => {
-        const trow = `<td>${i}</td><td>${element.track.name}</td><td>${element.track.album.name}</td><td><button class="btn btn-danger" onclick = RemoveFromPlaylist("${element.track.uri}","${idPlayList}")>Remove</button</td>`;
+        const trow = `<td>${i}</td><td>${element.track.name}</td><td>${element.track.album.name}</td><td><button class="btn btn-danger" onclick = RemoveFromPlaylist("${element.track.uri}","${idPlayList}",${i-1})>Remove</button</td>`;
         const tr = document.createElement('tr');
         tr.innerHTML = trow;
         tbody.append(tr);
@@ -290,18 +290,22 @@ const loadTracks = (playListTracks,idPlayList) => {
 }
 
 // TO Remove a track from the Particular PLAYLIST
-const RemoveFromPlaylist = async(trackUri,idplaylist) => {
-    // console.log(`"${trackUri}"`);
+const RemoveFromPlaylist = async(trackUri,idplaylist,positionId) => {
+    console.log(`"${trackUri}"`,positionId);
     const trackToRemove = `"${trackUri}"`;
     const access = getAccessTokenwithRefreshToken(REFRESH_TOKEN);
     const REMOVE_TRACK_URI = `https://api.spotify.com/v1/playlists/${idplaylist}/tracks`;
-    const body_req = {
-        "tracks": [
-          {
-            "uri": trackToRemove,
-          }
-        ]
-      };
+    // const body_req = {
+    //     "tracks": [
+    //       {
+    //         "uri": trackToRemove,
+    //         "positions": [
+    //             positionId
+    //         ]
+    //       }
+    //     ]
+    //   };
+      
     // const StringyBody = await body_req.toStringify();
     const removeResp = await fetch(REMOVE_TRACK_URI, {
         method: 'DELETE',
@@ -309,7 +313,16 @@ const RemoveFromPlaylist = async(trackUri,idplaylist) => {
             "Content-Type": "application/json",
             Authorization: "Bearer " + ACCESS_TOKEN
         },
-        body: body_req
+        body: {
+            "tracks": [
+              {
+                "uri": trackToRemove,
+                "positions": [
+                  positionId
+                ]
+              }
+            ]
+          }
     })
     const jsonRemove = await removeResp.json();
     console.log(jsonRemove);
@@ -339,8 +352,8 @@ const getAccessTokenwithRefreshToken = async(refresh) => {
 const authorizeUser = async() => {
     try {
         // const scopes = "playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative ugc-image-upload";
-        const redirect = "https://harishmadamanchi.github.io/Spotify/index.html";
-        // const redirect = "http://127.0.0.1:5500/index.html";
+        // const redirect = "https://harishmadamanchi.github.io/Spotify/index.html";
+        const redirect = "http://127.0.0.1:5500/index.html";
         const scopes ="streaming playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-follow-modify user-library-read user-library-modify user-modify-playback-state user-read-recently-played user-read-playback-state user-read-currently-playing user-top-read";
         const AUTHORIZEURI = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirect}&scope=${scopes}`;
         window.location.href = AUTHORIZEURI;    
