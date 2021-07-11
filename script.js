@@ -5,9 +5,12 @@ let ACCESS_TOKEN;
 let REFRESH_TOKEN;
 let USER_ID;
 
+let user_playlist = document.getElementById('user_playlist');
+
 const onPageLoad = () => {
     clientId = "40c41d6d7e3445f2bf45542ba3b75b7c";
     clientSecret = "2c9ea6aa0e6c4f399b666b7defa78b94";
+    user_playlist.style.display = "none";
     if( window.location.search.length > 0){
         handleRedirect();
     }
@@ -21,8 +24,8 @@ const handleRedirect = () => {
     if(code){
         // console.log("none");
         let login_container = document.getElementById('mainSection');
-        login_container.style.height = "0vh";
-        login_container.style.display = "block";
+        // login_container.style.height = "0vh";
+        // login_container.style.display = "block";
         login_container.style.display = "none";
     }
     if(code && REFRESH_TOKEN){
@@ -104,6 +107,7 @@ const getPlaylistOfUser = async() => {
 
 // load PLAYLIST to UI
 const loadUserPlaylist = (playlistJson) => {
+    user_playlist.style.display = 'block';
     const rowContainer = document.getElementById('containerRow');
     rowContainer.innerHTML = '';
     const numOfPlaylists = playlistJson.items;
