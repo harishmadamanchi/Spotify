@@ -128,7 +128,7 @@ const loadUserPlaylist = (playlistJson) => {
             <div class="card-body">
               <h6 class="card-title font-weight-bold">${element.name}</h6>
               <p class="card-text">${Playlistdescription}</p>
-              <button class="btn btn-outline-primary" id ="${element.id +"_follow"}" onclick = MakeFollowUnfollowPlaylist("${element.id}","${buttonName}")>${buttonName}</button>
+              <button class="btn btn-outline-info" id ="${element.id +"_follow"}" onclick = MakeFollowUnfollowPlaylist("${element.id}","${buttonName}")>${buttonName}</button>
               <button class="btn btn-info" id ="${element.id + "_GetTracks"}" onclick = GetTracks("${element.id}")>Get Tracks</button>
               <button class="btn btn-info mt-1" id ="${element.id + "_reOrder"}" onclick = ReOrderTracks("${element.id}","${element.snapshot_id}")>Re-Order</button>
               <button class="btn btn-outline-info mt-1" id ="${element.id + "_addSongs"}" onclick = AddSongs("${element.id}","${element.snapshot_id}")>Add Songs</button>
@@ -408,7 +408,7 @@ const loadSearchedPlaylist = (playlistJson) => {
             <div class="card-body">
               <h6 class="card-title font-weight-bold">${element.name}</h6>
               <p class="card-text">${Playlistdescription}</p>
-              <button class="btn btn-outline-primary" id ="${element.id}" onclick = MakeFollowUnfollowPlaylist("${element.id}","${buttonName}")>${buttonName}</button>
+              <button class="btn btn-outline-info" id ="${element.id}" onclick = MakeFollowUnfollowPlaylist("${element.id}","${buttonName}")>${buttonName}</button>
               <button class="btn btn-info" id ="${element.id}" onclick = GetTracks("${element.id}")>Get Tracks</button>
             </div>
         </div>`;
