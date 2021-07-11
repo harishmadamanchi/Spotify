@@ -179,7 +179,7 @@ const loadSongsTOADD = (tracksObject,idPlayList) => {
 // ADd song to playlist
 const ADDTOPlaylist = async(tracktoAdd,toPlaylist) => {
     const access = await getAccessTokenwithRefreshToken(REFRESH_TOKEN);
-    const ADDTOPLAYLISTURI = `https://api.spotify.com/v1/playlists/${toPlaylist}/tracks?uris=${tracktoAdd}`;
+    const ADDTOPLAYLISTURI = `https://api.spotify.com/v1/playlists/${toPlaylist}/tracks?uris=${tracktoAdd}&position=0`;
     const addResp = await fetch(ADDTOPLAYLISTURI, {
         method: 'POST',
         headers: {
