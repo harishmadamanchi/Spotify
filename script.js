@@ -422,7 +422,6 @@ const loadSearchedPlaylist = (playlistJson) => {
               <h6 class="card-title font-weight-bold">${element.name}</h6>
               <p class="card-text">${Playlistdescription}</p>
               <button class="btn btn-outline-info" id ="${element.id}" onclick = MakeFollowUnfollowPlaylist("${element.id}","${buttonName}")>${buttonName}</button>
-              <button class="btn btn-info" id ="${element.id}" onclick = GetTracks("${element.id}")>Get Tracks</button>
             </div>
         </div>`;
         const column = document.createElement('div');
