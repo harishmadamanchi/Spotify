@@ -135,7 +135,7 @@ const loadUserPlaylist = (playlistJson) => {
             </div>
         </div>`;
         const column = document.createElement('div');
-        column.setAttribute('class','col-3');
+        column.setAttribute('class','col-12 col-md-3');
         column.innerHTML = eachPlaylistItem;
         rowContainer.append(column);
     });
@@ -154,10 +154,10 @@ const AddSongs = async(playlistID,snapshot_id) => {
             }
         })
         const jsonResp = await searchResp.json();
-        console.log(jsonResp);
+        // console.log(jsonResp);
         loadSongsTOADD(jsonResp.tracks,playlistID);
     } catch (error) {
-        console.log(error);
+        window.alert(error);
     }
 }
 
@@ -212,10 +212,10 @@ const MakeFollowUnfollowPlaylist = async(playListId, buttonType) => {
                 },
                 body: {"public":false}
             });
-            // console.log('status code',playlistResponsefollow.status);
+            console.log('status code',playlistResponsefollow.status);
             if(playlistResponsefollow.status == 200){
                 // btn_follow.innerText = 'Unfollow';
-                window.alert('Successfully unfollowed the playlist');
+                window.alert('Successfully followed the playlist');
                 getPlaylistOfUser();
             }
             else{
@@ -234,7 +234,7 @@ const MakeFollowUnfollowPlaylist = async(playListId, buttonType) => {
             // console.log('status code',playlistResponseunfollow.status);
             if(playlistResponseunfollow.status == 200){
                 // btn_follow.innerText = 'Follow';
-                window.alert('Successfully followed the playlist');
+                window.alert('Successfully unfollowed the playlist');
                 getPlaylistOfUser();
             }
             else{
@@ -243,7 +243,8 @@ const MakeFollowUnfollowPlaylist = async(playListId, buttonType) => {
         }
         
     } catch (error) {
-        console.log(error);        
+        // console.log(error);  
+        window.alert(error);      
     }
 }
 
@@ -265,7 +266,8 @@ const GetTracks = async(idPlayList) => {
         loadTracks(jsonTracks.items,idPlayList);
     }
     catch (error) {
-        console.log(error);
+        // console.log(error);
+        window.alert(error);
     }
 }
 
@@ -340,7 +342,8 @@ const authorizeUser = async() => {
         const AUTHORIZEURI = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirect}&scope=${scopes}`;
         window.location.href = AUTHORIZEURI;    
     } catch (error) {
-        console.log(error);
+        // console.log(error);
+        window.alert(error);
     } 
 }
 
@@ -372,7 +375,8 @@ const getSearchedPlaylist = async(searchedValue) => {
         console.log(jsonResp);
         loadSearchedPlaylist(jsonResp.playlists);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
+        window.alert(error);
     }
 }
 
@@ -406,7 +410,7 @@ const loadSearchedPlaylist = (playlistJson) => {
             </div>
         </div>`;
         const column = document.createElement('div');
-        column.setAttribute('class','col-3');
+        column.setAttribute('class','col-12 col-md-3');
         column.innerHTML = eachPlaylistItem;
         searchedResult.append(column);
     });
