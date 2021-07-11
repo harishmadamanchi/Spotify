@@ -190,8 +190,11 @@ const ADDTOPlaylist = async(tracktoAdd,toPlaylist) => {
     // console.log(addResp);
     if(addResp.status == 201){
         window.alert('Track is added to Playlist.');
-        GetTracks(toPlaylist);
     }
+    else if(addResp.status == 403) {
+        window.alert('Adding songs to this PLaylist is forbidden');
+    }
+    GetTracks(toPlaylist);
 }
 
 // FOLLOW and UNFOLLOW some PLAYLIST
